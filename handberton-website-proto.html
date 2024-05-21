@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Bluetooth Control</title>
+  <style>
+    .color-button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Control Arduino via Bluetooth</h1>
+  <button id="motorButton">Toggle Motor</button>
+  <div>
+    <div class="color-button" style="background-color: red;" data-color="R"></div>
+    <div class="color-button" style="background-color: green;" data-color="G"></div>
+    <div class="color-button" style="background-color: blue;" data-color="B"></div>
+    <div class="color-button" style="background-color: black;" data-color="O"></div>
+  </div>
+
+  <script>
+    let bluetoothDevice;
+    let gattServer;
+    let service;
+    let characteristic;
+
+    async function connectBluetooth() {
+      try {
+        bluetoothDevice = await navigator.bluetooth.requestDevice({
+          filters: [{ namePrefix: 'HC-05' }],
+          optionalServices: ['00001101-0000-1000-8000-00805f9b34fb']
+        });
+        gattServer = await bluetoothDevice.gatt.connect();
+        service = await gattServer.getPrimaryService('00001101-0000-1000-8000-00805f9b34fb');
+        characteristic = await service.getCharacteristic('00001101-0000-1000-8000-00805f9b34fb');
+        console.log('Bluetooth connected');
+      } catch (error) {
+        console.error('Bluetooth connection failed', error);
+      }
+    }
+
+    async function sendCommand(command) {
+      if (!characteristic) {
+        await connectBluetooth();
+      }
+      const encoder = new TextEncoder();
+      await characteristic.writeValue(encoder.encode(command));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      connectBluetooth();
+
+      let motorOn = false;
+      const motorButton = document.getElementById('motorButton');
+      const colorButtons = document.querySelectorAll('.color-button');
+
+      motorButton.addEventListener('click', () => {
+        motorOn = !motorOn;
+        sendCommand(motorOn ? 'M' : 'm');
+      });
+
+      colorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          sendCommand(button.getAttribute('data-color'));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
