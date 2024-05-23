@@ -165,10 +165,12 @@
         controls.enableZoom = false; // Disable zoom
         controls.maxPolarAngle = Math.PI / 2;
 
+        let model; // Declare model variable globally
+
         // Load the glTF model
         const loader = new THREE.GLTFLoader();
         loader.load('models/handberton.gltf', function(gltf) {
-            const model = gltf.scene;
+            model = gltf.scene;
             model.scale.set(10, 10, 10); // Scale the model
             scene.add(model);
 
@@ -198,12 +200,18 @@
         scene.add(directionalLight);
 
         // Position the camera closer to the model
-        camera.position.set(0, 0, 1.5);
+        camera.position.set(0, 0, 3);
 
         // Animation loop
         function animate() {
             requestAnimationFrame(animate);
-            controls.update(); // Required if controls.enableDamping = true, or if controls.autoRotate = true
+            controls.update();
+
+            // Rotate the entire model
+            if (model) {
+                model.rotation.y += 0.005; // Rotate the model slowly
+            }
+
             renderer.render(scene, camera);
         }
 
