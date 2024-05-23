@@ -9,8 +9,13 @@
             width: 200px;
             margin: 20px auto;
         }
-        .control-panel button {
+        .control-panel button,
+        .control-panel input {
             margin: 5px 0;
+        }
+        .status {
+            margin-top: 20px;
+            color: red;
         }
     </style>
 </head>
@@ -21,6 +26,7 @@
         <button id="motorOff" disabled>Motor OFF</button>
         <input type="color" id="ledColor" disabled>
         <button id="setLedColor" disabled>Set LED Color</button>
+        <div id="status" class="status"></div>
     </div>
 
     <script>
@@ -40,21 +46,26 @@
                 document.getElementById('ledColor').disabled = false;
                 document.getElementById('setLedColor').disabled = false;
 
-                console.log('Connected to Arduino');
+                updateStatus('Connected to Arduino');
             } catch (error) {
                 console.error('Error connecting to Arduino: ', error);
+                updateStatus('Error connecting to Arduino: ' + error.message);
             }
         });
 
         document.getElementById('motorOn').addEventListener('click', () => {
             if (isConnected) {
                 sendCommand('motor:on\n');
+            } else {
+                updateStatus('Not connected to Arduino');
             }
         });
 
         document.getElementById('motorOff').addEventListener('click', () => {
             if (isConnected) {
                 sendCommand('motor:off\n');
+            } else {
+                updateStatus('Not connected to Arduino');
             }
         });
 
@@ -62,13 +73,26 @@
             if (isConnected) {
                 const color = document.getElementById('ledColor').value.substring(1);
                 sendCommand(`leds:${color}\n`);
+            } else {
+                updateStatus('Not connected to Arduino');
             }
         });
 
         async function sendCommand(command) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(command);
-            await writer.write(data);
+            try {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(command);
+                await writer.write(data);
+                updateStatus('Command sent: ' + command);
+            } catch (error) {
+                console.error('Error sending command: ', error);
+                updateStatus('Error sending command: ' + error.message);
+            }
+        }
+
+        function updateStatus(message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
         }
     </script>
 </body>
