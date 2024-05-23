@@ -1,21 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Arduino Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Arduino Control and 3D Model Viewer</title>
     <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
         .control-panel {
             display: flex;
             flex-direction: column;
-            width: 200px;
-            margin: 20px auto;
+            width: 220px;
+            margin-bottom: 20px;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .control-panel button,
         .control-panel input {
-            margin: 5px 0;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .control-panel button {
+            background-color: #007BFF;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
+        }
+        .control-panel button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+        }
+        .control-panel input[type="color"] {
+            padding: 0;
+            height: 40px;
         }
         .status {
             margin-top: 20px;
             color: red;
+            text-align: center;
+        }
+        .viewer {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            background-color: white;
+        }
+        canvas {
+            display: block;
         }
     </style>
 </head>
@@ -29,7 +76,13 @@
         <div id="status" class="status"></div>
     </div>
 
+    <div class="viewer" id="viewer"></div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/GLTFLoader.js"></script>
     <script>
+        // Arduino Control
         let port;
         let writer;
         let isConnected = false;
@@ -94,6 +147,74 @@
             const statusDiv = document.getElementById('status');
             statusDiv.textContent = message;
         }
+
+        // 3D Model Viewer with three.js
+        const viewer = document.getElementById('viewer');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+        renderer.setClearColor(0xffffff); // Set background to white
+        viewer.appendChild(renderer.domElement);
+
+        // Add orbit controls to allow for rotation
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.screenSpacePanning = false;
+        controls.enableZoom = false; // Disable zoom
+        controls.maxPolarAngle = Math.PI / 2;
+
+        // Load the glTF model
+        const loader = new THREE.GLTFLoader();
+        loader.load('models/handberton.gltf', function(gltf) {
+            const model = gltf.scene;
+            model.scale.set(10, 10, 10); // Scale the model
+            scene.add(model);
+
+            // Center the model
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            model.position.sub(center);
+
+            // Change color of the model
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.color.set(0xcccccc); // Set the color to a lighter shade
+                }
+            });
+
+            animate();
+        }, undefined, function(error) {
+            console.error('An error happened while loading the model:', error);
+        });
+
+        // Set up the lighting
+        const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1, 1, 1).normalize();
+        scene.add(directionalLight);
+
+        // Position the camera closer to the model
+        camera.position.set(0, 0, 1.5);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Required if controls.enableDamping = true, or if controls.autoRotate = true
+            renderer.render(scene, camera);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = viewer.clientWidth / viewer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+        });
+
+        animate();
     </script>
 </body>
 </html>
