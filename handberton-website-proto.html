@@ -1,76 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Bluetooth Control</title>
-  <style>
-    .color-button {
-      width: 50px;
-      height: 50px;
-      margin: 5px;
-      display: inline-block;
-      cursor: pointer;
-    }
-  </style>
+    <title>Arduino Control</title>
+    <style>
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: 20px auto;
+        }
+        .control-panel button {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-  <h1>Control Arduino via Bluetooth</h1>
-  <button id="motorButton">Toggle Motor</button>
-  <div>
-    <div class="color-button" style="background-color: red;" data-color="R"></div>
-    <div class="color-button" style="background-color: green;" data-color="G"></div>
-    <div class="color-button" style="background-color: blue;" data-color="B"></div>
-    <div class="color-button" style="background-color: black;" data-color="O"></div>
-  </div>
+    <div class="control-panel">
+        <button id="connect">Connect to Arduino</button>
+        <button id="motorOn" disabled>Motor ON</button>
+        <button id="motorOff" disabled>Motor OFF</button>
+        <input type="color" id="ledColor" disabled>
+        <button id="setLedColor" disabled>Set LED Color</button>
+    </div>
 
-  <script>
-    let bluetoothDevice;
-    let gattServer;
-    let service;
-    let characteristic;
+    <script>
+        let port;
+        let writer;
+        let isConnected = false;
 
-    async function connectBluetooth() {
-      try {
-        bluetoothDevice = await navigator.bluetooth.requestDevice({
-          filters: [{ namePrefix: 'HC-05' }],
-          optionalServices: ['00001101-0000-1000-8000-00805f9b34fb']
+        document.getElementById('connect').addEventListener('click', async () => {
+            try {
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: 9600 });
+                writer = port.writable.getWriter();
+                isConnected = true;
+
+                document.getElementById('motorOn').disabled = false;
+                document.getElementById('motorOff').disabled = false;
+                document.getElementById('ledColor').disabled = false;
+                document.getElementById('setLedColor').disabled = false;
+
+                console.log('Connected to Arduino');
+            } catch (error) {
+                console.error('Error connecting to Arduino: ', error);
+            }
         });
-        gattServer = await bluetoothDevice.gatt.connect();
-        service = await gattServer.getPrimaryService('00001101-0000-1000-8000-00805f9b34fb');
-        characteristic = await service.getCharacteristic('00001101-0000-1000-8000-00805f9b34fb');
-        console.log('Bluetooth connected');
-      } catch (error) {
-        console.error('Bluetooth connection failed', error);
-      }
-    }
 
-    async function sendCommand(command) {
-      if (!characteristic) {
-        await connectBluetooth();
-      }
-      const encoder = new TextEncoder();
-      await characteristic.writeValue(encoder.encode(command));
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      connectBluetooth();
-
-      let motorOn = false;
-      const motorButton = document.getElementById('motorButton');
-      const colorButtons = document.querySelectorAll('.color-button');
-
-      motorButton.addEventListener('click', () => {
-        motorOn = !motorOn;
-        sendCommand(motorOn ? 'M' : 'm');
-      });
-
-      colorButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          sendCommand(button.getAttribute('data-color'));
+        document.getElementById('motorOn').addEventListener('click', () => {
+            if (isConnected) {
+                sendCommand('motor:on\n');
+            }
         });
-      });
-    });
-  </script>
+
+        document.getElementById('motorOff').addEventListener('click', () => {
+            if (isConnected) {
+                sendCommand('motor:off\n');
+            }
+        });
+
+        document.getElementById('setLedColor').addEventListener('click', () => {
+            if (isConnected) {
+                const color = document.getElementById('ledColor').value.substring(1);
+                sendCommand(`leds:${color}\n`);
+            }
+        });
+
+        async function sendCommand(command) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(command);
+            await writer.write(data);
+        }
+    </script>
 </body>
 </html>
