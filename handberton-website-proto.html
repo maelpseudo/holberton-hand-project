@@ -1,228 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Arduino Control and 3D Model Viewer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
     <style>
         body {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .control-panel, .calibration-panel {
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            margin: 10px;
+        }
+        .calibration-panel {
+            width: auto; /* Adjust width to fit content */
+        }
+        .calibration-panel .motor-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .motor-control {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: white;
-            font-family: Arial, sans-serif;
         }
-        .control-panel {
+        .motor-control .buttons {
             display: flex;
             flex-direction: column;
-            width: 220px;
-            margin-bottom: 20px;
-            z-index: 1;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            gap: 5px;
         }
-        .control-panel button,
-        .control-panel input {
-            margin: 10px 0;
+        button {
             padding: 10px;
-            border: none;
             border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+            color: #fff;
+            background-color: #007bff;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, box-shadow 0.3s;
         }
-        .control-panel button {
-            background-color: #007BFF;
-            color: white;
-            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
-        }
-        .control-panel button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
-        }
-        .control-panel input[type="color"] {
-            padding: 0;
+        .motor-control button {
+            width: 40px;
             height: 40px;
+            padding: 0;
         }
         .status {
-            margin-top: 20px;
-            color: red;
+            color: #888;
+            font-size: 14px;
             text-align: center;
         }
-        .viewer {
-            width: 600px;
-            height: 400px;
-            overflow: hidden;
-            position: relative;
-            background-color: white;
+        button:hover {
+            background-color: #0056b3;
         }
-        canvas {
-            display: block;
+        button:disabled {
+            background-color: #ccc;
+            cursor: default;
         }
     </style>
 </head>
 <body>
+    <div class="calibration-panel">
+        <h3>Calibrage</h3>
+        <p>Déplacer les doigts pour qu'ils soient complètement dépliés</p>
+        <button id="startCalibration">Commencer Calibrage</button>
+        <div class="motor-controls">
+            <div class="motor-control" data-motor="1">Pouce (Doigt 1): 
+                <div class="buttons">
+                    <button class="up" onmousedown="sendCalibrateCommand('motor1:up')" onmouseup="sendCalibrateCommand('motor1:stop')">↑</button>
+                    <button class="down" onmousedown="sendCalibrateCommand('motor1:down')" onmouseup="sendCalibrateCommand('motor1:stop')">↓</button>
+                </div>
+            </div>
+            <div class="motor-control" data-motor="2">Index (Doigt 2): 
+                <div class="buttons">
+                    <button class="up" onmousedown="sendCalibrateCommand('motor2:up')" onmouseup="sendCalibrateCommand('motor2:stop')">↑</button>
+                    <button class="down" onmousedown="sendCalibrateCommand('motor2:down')" onmouseup="sendCalibrateCommand('motor2:stop')">↓</button>
+                </div>
+            </div>
+            <div class="motor-control" data-motor="3">Majeur (Doigt 3): 
+                <div class="buttons">
+                    <button class="up" onmousedown="sendCalibrateCommand('motor3:up')" onmouseup="sendCalibrateCommand('motor3:stop')">↑</button>
+                    <button class="down" onmousedown="sendCalibrateCommand('motor3:down')" onmouseup="sendCalibrateCommand('motor3:stop')">↓</button>
+                </div>
+            </div>
+            <div class="motor-control" data-motor="4">Annulaire (Doigt 4): 
+                <div class="buttons">
+                    <button class="up" onmousedown="sendCalibrateCommand('motor4:up')" onmouseup="sendCalibrateCommand('motor4:stop')">↑</button>
+                    <button class="down" onmousedown="sendCalibrateCommand('motor4:down')" onmouseup="sendCalibrateCommand('motor4:stop')">↓</button>
+                </div>
+            </div>
+            <div class="motor-control" data-motor="5">Petit Doigt (Doigt 5): 
+                <div class="buttons">
+                    <button class="up" onmousedown="sendCalibrateCommand('motor5:up')" onmouseup="sendCalibrateCommand('motor5:stop')">↑</button>
+                    <button class="down" onmousedown="sendCalibrateCommand('motor5:down')" onmouseup="sendCalibrateCommand('motor5:stop')">↓</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="control-panel">
         <button id="connect">Connect to Arduino</button>
-        <button id="motorOn" disabled>Motor ON</button>
-        <button id="motorOff" disabled>Motor OFF</button>
-        <input type="color" id="ledColor" disabled>
-        <button id="setLedColor" disabled>Set LED Color</button>
-        <div id="status" class="status"></div>
+        <div class="motor-control" data-motor="1">Pouce (Doigt 1): 
+            <button onclick="sendCommand('finger1:open')">Ouvrir</button>
+            <button onclick="sendCommand('finger1:close')">Fermer</button>
+        </div>
+        <div class="motor-control" data-motor="2">Index (Doigt 2): 
+            <button onclick="sendCommand('finger2:open')">Ouvrir</button>
+            <button onclick="sendCommand('finger2:close')">Fermer</button>
+        </div>
+        <div class="motor-control" data-motor="3">Majeur (Doigt 3): 
+            <button onclick="sendCommand('finger3:open')">Ouvrir</button>
+            <button onclick="sendCommand('finger3:close')">Fermer</button>
+        </div>
+        <div class="motor-control" data-motor="4">Annulaire (Doigt 4): 
+            <button onclick="sendCommand('finger4:open')">Ouvrir</button>
+            <button onclick="sendCommand('finger4:close')">Fermer</button>
+        </div>
+        <div class="motor-control" data-motor="5">Petit Doigt (Doigt 5): 
+            <button onclick="sendCommand('finger5:open')">Ouvrir</button>
+            <button onclick="sendCommand('finger5:close')">Fermer</button>
+        </div>
+        <div id="status" class="status">Disconnected</div>
     </div>
 
-    <div class="viewer" id="viewer"></div>
-
-    <script src="js/three.min.js"></script>
-    <script src="js/OrbitControls.js"></script>
-    <script src="js/GLTFLoader.js"></script>
     <script>
-        // Arduino Control
         let port;
         let writer;
         let isConnected = false;
 
         document.getElementById('connect').addEventListener('click', async () => {
-            try {
-                port = await navigator.serial.requestPort();
-                await port.open({ baudRate: 9600 });
-                writer = port.writable.getWriter();
-                isConnected = true;
-
-                document.getElementById('motorOn').disabled = false;
-                document.getElementById('motorOff').disabled = false;
-                document.getElementById('ledColor').disabled = false;
-                document.getElementById('setLedColor').disabled = false;
-
-                updateStatus('Connected to Arduino');
-            } catch (error) {
-                console.error('Error connecting to Arduino: ', error);
-                updateStatus('Error connecting to Arduino: ' + error.message);
-            }
-        });
-
-        document.getElementById('motorOn').addEventListener('click', () => {
-            if (isConnected) {
-                sendCommand('motor:on\n');
+            if ('serial' in navigator) {
+                try {
+                    port = await navigator.serial.requestPort();
+                    await port.open({ baudRate: 9600 });
+                    writer = port.writable.getWriter();
+                    isConnected = true;
+                    updateStatus('Connected to Arduino');
+                } catch (error) {
+                    console.error('Error connecting to Arduino:', error);
+                    updateStatus('Connection failed: ' + error.message);
+                }
             } else {
-                updateStatus('Not connected to Arduino');
+                updateStatus('Web Serial API not supported.');
             }
         });
 
-        document.getElementById('motorOff').addEventListener('click', () => {
-            if (isConnected) {
-                sendCommand('motor:off\n');
-            } else {
-                updateStatus('Not connected to Arduino');
-            }
+        document.getElementById('startCalibration').addEventListener('click', () => {
+            sendCommand('startCalibration');
         });
 
-        document.getElementById('setLedColor').addEventListener('click', () => {
-            if (isConnected) {
-                const color = document.getElementById('ledColor').value.substring(1);
-                sendCommand(`leds:${color}\n`);
-            } else {
-                updateStatus('Not connected to Arduino');
+        function sendCommand(command) {
+            if (isConnected && writer) {
+                try {
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(command + '\n');
+                    writer.write(data);
+                    updateStatus('Command sent: ' + command);
+                } catch (error) {
+                    console.error('Error sending command:', error);
+                    updateStatus('Send failed: ' + error.message);
+                }
             }
-        });
+        }
 
-        async function sendCommand(command) {
-            try {
-                const encoder = new TextEncoder();
-                const data = encoder.encode(command);
-                await writer.write(data);
-                updateStatus('Command sent: ' + command);
-            } catch (error) {
-                console.error('Error sending command: ', error);
-                updateStatus('Error sending command: ' + error.message);
+        function sendCalibrateCommand(command) {
+            if (isConnected && writer) {
+                try {
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(command + '\n');
+                    writer.write(data);
+                    updateStatus('Calibrate command sent: ' + command);
+                } catch (error) {
+                    console.error('Error sending calibrate command:', error);
+                    updateStatus('Send failed: ' + error.message);
+                }
             }
         }
 
         function updateStatus(message) {
-            const statusDiv = document.getElementById('status');
-            statusDiv.textContent = message;
+            document.getElementById('status').textContent = message;
         }
-
-        // 3D Model Viewer with three.js
-        const viewer = document.getElementById('viewer');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-        renderer.setClearColor(0xffffff); // Set background to white
-        viewer.appendChild(renderer.domElement);
-
-        // Add orbit controls to allow for rotation
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.25;
-        controls.screenSpacePanning = false;
-        controls.enableZoom = false; // Disable zoom
-        controls.maxPolarAngle = Math.PI / 2;
-
-        let model; // Declare model variable globally
-
-        // Load the glTF model
-        const loader = new THREE.GLTFLoader();
-        loader.load('models/handberton.gltf', function(gltf) {
-            model = gltf.scene;
-            model.scale.set(10, 10, 10); // Scale the model
-            scene.add(model);
-
-            // Center the model
-            const box = new THREE.Box3().setFromObject(model);
-            const center = box.getCenter(new THREE.Vector3());
-            model.position.sub(center);
-
-            // Change color of the model
-            model.traverse((child) => {
-                if (child.isMesh) {
-                    child.material.color.set(0xcccccc); // Set the color to a lighter shade
-                }
-            });
-
-            animate();
-        }, undefined, function(error) {
-            console.error('An error happened while loading the model:', error);
-        });
-
-        // Set up the lighting
-        const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(1, 1, 1).normalize();
-        scene.add(directionalLight);
-
-        // Position the camera closer to the model
-        camera.position.set(0, 0, 3);
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-
-            // Rotate the entire model
-            if (model) {
-                model.rotation.y += 0.005; // Rotate the model slowly
-            }
-
-            renderer.render(scene, camera);
-        }
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = viewer.clientWidth / viewer.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-        });
-
-        animate();
     </script>
 </body>
 </html>
