@@ -1,0 +1,112 @@
+/* Reset de base pour enlever les marges par défaut */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, fieldset, legend, input, textarea, button {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style de base pour le corps et les polices */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0; /* Couleur de fond générale */
+    color: #333; /* Couleur de texte générale */
+}
+
+.container {
+    width: 80%; /* Largeur du contenu principal */
+    margin: 0 auto; /* Centrer le contenu */
+}
+
+.header {
+    background-color: #333; /* Couleur de fond de l'en-tête */
+    color: #fff; /* Couleur de texte de l'en-tête */
+    padding: 20px 0; /* Espacement intérieur haut/bas */
+    text-align: center; /* Centrer le texte */
+    border-radius: 10px 10px 0 0; /* Bordure arrondie en haut */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-menu {
+    text-align: center;
+}
+
+.navbar-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu .nav-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar-menu .nav-link {
+    color: #fff; /* Couleur de lien */
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.navbar-menu .nav-link:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordure arrondie pour le formulaire */
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: calc(100% - 20px); /* Largeur du champ de saisie */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+form textarea {
+    height: 150px; /* Hauteur de la zone de texte */
+}
+
+form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px; /* Bordure arrondie pour le bouton */
+}
+
+form button[type="submit"]:hover {
+    background-color: #962d2d;
+}

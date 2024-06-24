@@ -7,7 +7,9 @@
     <title>Homepage - Hand Machine </title>
     <meta name="description" content="Description of the page less than 150 characters">
     <link rel="icon" type="image/png" href="Vista Logos/logo-transparent-png.png">
-    <link rel='stylesheet' href='styles1.css'>
+    <link rel='stylesheet' href='CSS/index.css'>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 </head>
 
 <body>
@@ -15,8 +17,8 @@
     <header class="header" data-section-theme="dark">
         <div class="container">
             <div class="header-logo">
-                <a href="#">
-                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="160" height="60">
+                <a href="vidéopage.html">
+                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="130" height="100">
                 </a>
             </div>
             <nav class="navbar-menu">
@@ -25,7 +27,7 @@
                         <a href="#" class="nav-link">Home</a>
                     </li> 
                     <li class="nav-item">
-                        <a href="hand-status.html">Hand Status</a>
+                        <a href="loginpage.html">Hand Status</a>
                     </li>
                     
                         <li class="nav-item">
@@ -33,7 +35,7 @@
                     <li class="nav-item">
                         <a href="#Hand Machine Development" class="nav-link">Hand Machine Development</a>
                     <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
                 </ul>
             </nav>
         </div>
@@ -46,7 +48,7 @@
                 <div class="section-body">
                     <section class="section-inner">
                         <h2 class="section-title">The hand machine is ready!</h2>
-                        <a href="#works" class="button">Get Started</a>
+                        <a href="#Works" class="button">Get Started</a>
                     </section>
                 </div>
             </div>
@@ -64,10 +66,10 @@
                             <article class="card-work">
                                 <div class="card-outer">
                                     <div class="card-image">
-                                        <img src="image/image.png" alt="">
+                                        <img src="image/image.png" alt=""  width="400" height="400">
                                     </div>
                                     <div class="card-inner">
-                                        <h3 class="card-title"><a href="#">Interior Design</a></h3>
+                                        <h3 class="card-title"><a href="Interiordesign.html">Interior Design</a></h3>
                                     </div>
                                 </div>
                             </article>
@@ -76,22 +78,10 @@
                             <article class="card-work">
                                 <div class="card-outer">
                                     <div class="card-image">
-                                        <img src="image/image copy 2.png" alt="">
+                                        <img src="image/image copy 2.png" alt=""  width="400" height="400">
                                     </div>
                                     <div class="card-inner">
                                         <h3 class="card-title"><a href="#">Web Development</a></h3>
-                                    </div>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="col-1-3">
-                            <article class="card-work">
-                                <div class="card-outer">
-                                    <div class="card-image">
-                                        <img src="image/image copy.png" alt="">
-                                    </div>
-                                    <div class="card-inner">
-                                        <h3 class="card-title"><a href="#">Personal Development</a></h3>
                                     </div>
                                 </div>
                             </article>
@@ -114,7 +104,7 @@
                                 <img src="image/IMG_20230827_201330.jpg" alt="Alfred G. avatar" width="100" height="100"
                                     class="card-avatar">
                                 <blockquote class="card-quote">
-                                    <p>Hi, it's me who took care of the Front-end part of the site
+                                    <p>Backend and Database engineer
                                         <cite>Alfred G.</cite>
                                     </p>
                                 </blockquote>
@@ -122,10 +112,10 @@
                         </li>
                         <li class="col-1-3">
                             <article class="card-testimonial">
-                                <img src="images/pic-person-02.jpg" alt="Maël C. avatar" width="100" height="100"
+                                <img src="image/mael.png" alt="Maël C. avatar" width="100" height="100"
                                     class="card-avatar">
                                 <blockquote class="card-quote">
-                                    <p>Thank you so much for your help. Techium company is awesome!
+                                    <p>Robotics engineer
                                         <cite>Maël C.</cite>
                                     </p>
                                 </blockquote>
@@ -133,11 +123,10 @@
                         </li>
                         <li class="col-1-3">
                             <article class="card-testimonial">
-                                <img src="images/pic-person-03.jpg" alt="Saber S. avatar" width="100" height="100"
+                                <img src="image/saber.png" alt="Saber S. avatar" width="100" height="100"
                                     class="card-avatar">
                                 <blockquote class="card-quote">
-                                    <p>I love your system. Definitely worth the investment. I'd be lost without Techium
-                                        company.
+                                    <p>Machine Learning engineer
                                         <cite>Saber S.</cite>
                                     </p>
                                 </blockquote>
@@ -168,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-1-2">
-                    <img src="Vista Logos/logo-transparent-png.png" alt="Hand Machine logo" width="130" height="30">
+                    <img src="Vista Logos/logo-transparent-png.png" alt="Hand Machine logo" width="130" height="100">
                     <address class="footer-address">
                         22 terasse Bellini<br>
                         Puteaux, FR<br>

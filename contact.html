@@ -1,40 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Homepage - Hand Machine </title>
-    <meta name="description" content="Description of the page less than 150 characters">
-    <link rel="icon" type="image/png" href="Vista Logos/logo-transparent-png.png">
-    <link rel='stylesheet' href='styles2.css'>
-</head>
-
-<body>
-    <!-- Header -->
     <header class="header" data-section-theme="dark">
         <div class="container">
             <div class="header-logo">
                 <a href="#">
-                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="160" height="60">
+                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="130" height="100">
                 </a>
             </div>
             <nav class="navbar-menu">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Home</a>
+                        <a href="index.html" class="nav-link">Home</a>
                     </li> 
                     <li class="nav-item">
-                        <a href="Html/hand-status.html">Hand Status</a>
+                        <a href="loginpage.html">Hand Status</a>
                     </li>
-                    
-                        <li class="nav-item">
-                            <a href="#works" class="nav-link">Works</a>
-                    <li class="nav-item">
-                        <a href="#Hand Machine Development" class="nav-link">Hand Machine Development</a>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                </ul>
             </nav>
         </div>
     </header>
+    <title>Contact Us</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-functions.js"></script>
+    <link rel='stylesheet' href='/CSS/contact.css'>
+    <script>
+        // TODO: Replace with your project's customized code snippet
+        var firebaseConfig = {
+            apiKey : "AIzaSyC7RN3o4MjeqL32ewvDq1cPIRW7ohKkCW4" , 
+            authDomain : "handberton-96e2c.firebaseapp.com" ,
+            messagerieSenderId : "231357236145" , 
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var functions = firebase.functions();
+    </script>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form id="contactForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', submitForm);
+        
+        function submitForm(e) {
+            e.preventDefault();
+            
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            
+            var addMessage = firebase.functions().httpsCallable('addMessage');
+            addMessage({name: name, email: email, message: message})
+                .then(function(result) {
+                    console.log(result.data);
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
