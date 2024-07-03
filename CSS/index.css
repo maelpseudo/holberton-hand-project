@@ -1,230 +1,261 @@
-/* Reset CSS */
+/* Variables de personnalisation */
+:root {
+    /* Couleurs principales */
+    --primary-color: #b1b1b1; /* Couleur principale */
+    --secondary-color: #333; /* Couleur secondaire */
+    --background-color: #f9f9f9; /* Couleur de fond */
+    --text-color: #313131; /* Couleur du texte principal */
+
+    /* Dimensions */
+    --container-width: 80%; /* Largeur du conteneur */
+}
+
+/* Reset CSS - Supprime les marges et les paddings par défaut */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Pour inclure les bordures et le padding dans les dimensions */
 }
 
-/* Global styles */
+/* Styles globaux */
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    font-family: 'Arial', sans-serif; /* Police d'écriture */
+    line-height: 1.6; /* Hauteur de ligne */
+    background-color: var(--background-color); /* Couleur de fond */
+    color: var(--text-color); /* Couleur du texte */
 }
 
+/* Conteneur principal */
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    width: var(--container-width); /* Largeur du conteneur */
+    margin: auto; /* Centrage horizontal */
+    overflow: hidden; /* Cacher le dépassement du contenu */
 }
 
-/* Header styles */
+/* Styles de l'en-tête */
 .header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
+    background-color: var(--primary-color); /* Couleur de fond de l'en-tête */
+    color: #fff; /* Couleur du texte */
+    padding: 20px 0; /* Espacement intérieur vertical */
 }
 
+/* Logo de l'en-tête */
 .header-logo {
-    float: left;
+    float: left; /* Alignement à gauche */
 }
 
 .header-logo img {
-    width: 100px;
-    height: auto;
+    width: 100px; /* Largeur de l'image du logo */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
 }
 
+/* Menu de navigation */
 .navbar-menu {
-    float: right;
+    float: right; /* Alignement à droite */
 }
 
+/* Liste de navigation */
 .nav {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+    list-style-type: none; /* Suppression des puces */
+    padding: 0; /* Suppression des paddings */
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage des éléments */
 }
 
+/* Éléments de la navigation */
 .nav-item {
-    margin: 0 10px;
+    margin: 0 10px; /* Espacement horizontal entre les éléments */
 }
 
+/* Liens de navigation */
 .nav-link {
-    text-decoration: none;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    text-decoration: none; /* Suppression du soulignement */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 15px; /* Espacement intérieur */
+    border-radius: 5px; /* Bordure arrondie */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
 }
 
 .nav-link:hover {
-    background-color: #555;
+    background-color: var(--primary-color); /* Changement de couleur de fond au survol */
 }
 
-/* Main section styles */
+/* Styles de la section principale */
 .main {
-    padding: 20px 0;
+    padding: 20px 0; /* Espacement intérieur vertical */
 }
 
+/* Styles des sections */
 .section {
-    padding: 40px 0;
+    padding: 40px 0; /* Espacement intérieur vertical */
 }
 
 .section-title {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 2.5rem; /* Taille de police */
+    text-align: center; /* Centrage du texte */
+    margin-bottom: 20px; /* Espacement en bas */
 }
 
 .section-tagline {
-    text-align: center;
-    margin-bottom: 40px;
+    text-align: center; /* Centrage du texte */
+    margin-bottom: 40px; /* Espacement en bas */
 }
 
 .section-header {
-    text-align: center;
-    margin-bottom: 40px;
+    text-align: center; /* Centrage du texte */
+    margin-bottom: 40px; /* Espacement en bas */
 }
 
 .section-body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: flex; /* Affichage en flexbox */
+    flex-wrap: wrap; /* Permet le retour à la ligne des éléments */
+    justify-content: space-around; /* Répartition des éléments avec des espaces autour */
 }
 
+/* Disposition des colonnes */
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: flex; /* Affichage en flexbox */
+    flex-wrap: wrap; /* Permet le retour à la ligne des éléments */
+    justify-content: space-around; /* Répartition des éléments avec des espaces autour */
 }
 
 .col-1-3 {
-    flex: 0 0 30%;
-    max-width: 30%;
-    margin-bottom: 20px;
+    flex: 0 0 30%; /* Largeur fixe de 30% */
+    max-width: 30%; /* Largeur maximale de 30% */
+    margin-bottom: 20px; /* Espacement en bas */
 }
 
+/* Styles des cartes */
 .card-work,
 .card-testimonial {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    background-color: #fff; /* Couleur de fond */
+    border-radius: 10px; /* Bordure arrondie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
+    overflow: hidden; /* Cacher le dépassement du contenu */
+    transition: transform 0.3s ease; /* Transition pour la transformation */
 }
 
 .card-work:hover,
 .card-testimonial:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Déplacement vers le haut au survol */
 }
 
+/* Conteneur de la carte */
 .card-outer {
-    position: relative;
+    position: relative; /* Positionnement relatif */
 }
 
 .card-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    object-fit: cover;
+    display: block; /* Affichage en bloc */
+    width: 100%; /* Largeur de l'image à 100% du conteneur */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+    border-top-left-radius: 10px; /* Bordure arrondie en haut à gauche */
+    border-top-right-radius: 10px; /* Bordure arrondie en haut à droite */
+    object-fit: cover; /* Recadrage de l'image pour couvrir le conteneur */
 }
 
 .card-inner {
-    padding: 20px;
+    padding: 20px; /* Espacement intérieur */
 }
 
+/* Titre de la carte */
 .card-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem; /* Taille de police */
+    margin-bottom: 10px; /* Espacement en bas */
 }
 
+/* Citation de la carte */
 .card-quote {
-    font-style: italic;
+    font-style: italic; /* Style italique */
 }
 
+/* Avatar de la carte */
 .card-avatar {
-    border-radius: 50%;
-    margin-right: 10px;
+    border-radius: 50%; /* Bordure arrondie en cercle */
+    margin-right: 10px; /* Espacement à droite */
 }
 
-/* Button style */
+/* Styles des boutons */
 .button {
-    display: inline-block;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    display: inline-block; /* Affichage en bloc en ligne */
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement intérieur */
+    text-decoration: none; /* Suppression du soulignement */
+    border-radius: 5px; /* Bordure arrondie */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
 }
 
 .button:hover {
-    background-color: #555;
+    background-color: #b1aeae; /* Changement de couleur de fond au survol */
 }
 
-/* Footer styles */
+/* Styles du pied de page */
 .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 40px 0;
-    text-align: center;
+    background-color: #a5a5a5; /* Couleur de fond */
+    color: #000000; /* Couleur du texte */
+    padding: 40px 0; /* Espacement intérieur vertical */
+    text-align: center; /* Centrage du texte */
 }
 
 .footer-address {
-    margin-top: 20px;
-    font-size: 0.9rem;
+    margin-top: 20px; /* Espacement en haut */
+    font-size: 0.9rem; /* Taille de police */
 }
 
+/* Liste des réseaux sociaux */
 .social {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    list-style-type: none; /* Suppression des puces */
+    padding: 0; /* Suppression des paddings */
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage des éléments */
+    margin-top: 20px; /* Espacement en haut */
 }
 
 .social-item {
-    margin: 0 10px;
+    margin: 0 10px; /* Espacement horizontal entre les éléments */
 }
 
 .social-link {
-    color: #fff;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
+    color: #fff; /* Couleur du texte */
+    text-decoration: none; /* Suppression du soulignement */
+    transition: opacity 0.3s ease; /* Transition pour le changement d'opacité */
 }
 
 .social-link:hover {
-    opacity: 0.8;
+    opacity: 0.8; /* Changement d'opacité au survol */
 }
 
-/* Responsive design */
+/* Design responsive */
 @media screen and (max-width: 1024px) {
     .container {
-        width: 90%;
+        width: 90%; /* Largeur du conteneur */
     }
 
     .col-1-3 {
-        flex: 0 0 45%;
-        max-width: 45%;
+        flex: 0 0 45%; /* Largeur fixe de 45% */
+        max-width: 45%; /* Largeur maximale de 45% */
     }
 }
 
 @media screen and (max-width: 768px) {
     .nav {
-        flex-direction: column;
+        flex-direction: column; /* Disposition en colonne */
     }
 
     .nav-item {
-        margin: 10px 0;
+        margin: 10px 0; /* Espacement vertical entre les éléments */
     }
 
     .col-1-3 {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 100%; /* Largeur fixe de 100% */
+        max-width: 100%; /* Largeur maximale de 100% */
     }
+}
+
+/* Centrage du bouton */
+.centered-button {
+    display: block; /* Affichage en bloc */
+    margin: 20px auto; /* Centrage horizontal et espacement vertical */
+    text-align: center; /* Centrage du texte */
 }

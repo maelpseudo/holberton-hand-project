@@ -13,12 +13,12 @@ body {
 }
 
 .container {
-    width: 80%; /* Largeur du contenu principal */
+    width: 100%; /* Largeur du contenu principal */
     margin: 0 auto; /* Centrer le contenu */
 }
 
 .header {
-    background-color: #333; /* Couleur de fond de l'en-tête */
+    background-color: #c4c4c4; /* Couleur de fond de l'en-tête */
     color: #fff; /* Couleur de texte de l'en-tête */
     padding: 20px 0; /* Espacement intérieur haut/bas */
     text-align: center; /* Centrer le texte */

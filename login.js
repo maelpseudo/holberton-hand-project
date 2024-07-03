@@ -124,3 +124,44 @@ document.getElementById('return-btn').addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('main').classList.add('active');
 });
+document.getElementById('logout').addEventListener('click', () => {
+  signOut(auth).then(() => {
+      console.log('User signed out.');
+      window.alert('You have been logged out.');
+      window.location.href = 'login.html'; // Redirect to login page or any other appropriate page
+  }).catch((error) => {
+      console.error('Error signing out: ', error);
+      window.alert('Error signing out. Try again.');
+  });
+});
+// functions/index.js
+const functions = require('firebase-functions');
+const nodemailer = require('nodemailer');
+
+// Configurez votre transporteur de messagerie
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // Vous pouvez utiliser un autre service de messagerie
+    auth: {
+        user: 'votre-email@gmail.com', // Remplacez par votre email
+        pass: 'votre-mot-de-passe' // Remplacez par votre mot de passe
+    }
+});
+
+// Créez une fonction pour envoyer l'email
+exports.sendEmail = functions.https.onCall((data, context) => {
+    const mailOptions = {
+        from: 'votre-email@gmail.com', // Remplacez par votre email
+        to: 'alfredgibeauahoussinou@gmail.com', // L'email de destination
+        subject: 'Nouveau message de contact',
+        text: `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`
+    };
+
+    return transporter.sendMail(mailOptions)
+        .then(() => {
+            return { success: true };
+        })
+        .catch(error => {
+            console.error('Error sending email:', error);
+            throw new functions.https.HttpsError('unknown', 'Failed to send email', error);
+        });
+});

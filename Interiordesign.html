@@ -4,42 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='CSS/interiordesign.css'>
-    <title>Page de Présentation</title>
-<main>
-    <body>
-        <!-- Header -->
-        <header class="header" data-section-theme="dark">
-            <div class="container">
-                <div class="header-logo">
-                    <a href="vidéopage.html">
-                        <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="130" height="100">
-                    </a>
-                </div>
-                <nav class="navbar-menu">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Home</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="loginpage.html">Hand Status</a>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact</a>
-                    </ul>
-                </nav>
+    <title>Interior Design - Handberton</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" data-section-theme="dark">
+        <div class="container">
+            <div class="header-logo">
+                <a href="vidéopage.html">
+                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="130" height="100">
+                </a>
             </div>
-        </header>
-    <section>
-        <p>voici les éléments de modelisation utiliser.</p>
-        <img src="models-main/258371601225504882(1).jpg" alt="Une réalisation">
-    </section>
-    
-    <section>
+            <nav class="navbar-menu">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link"><img src="image/maison (2).png" alt="menu"></a>
+                    </li> 
+                    <li class="nav-item">
+                        <a href="loginpage.html"><img src="image/mot-de-passe.png" alt="menu"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link"><img src="image/lettre (1).png" alt="menu"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <div>
-            <img src="models-main/6408091601225301216(1).jpg" alt="Projet 1">
+    <main class="container">
+        <section class="gallery">
+            <div class="gallery-item">
+                <img src="models-main/258371601225504882(1).jpg" alt="Projet 1">
+            </div>
+            <div class="gallery-item">
+                <img src="models-main/6408091601225301216(1).jpg" alt="Projet 2">
+            </div>
+            <div class="gallery-item">
+                <img src="models-main/7478631601225499846(1).png" alt="Projet 3">
+            </div>
+        </section>
+
+        <div class="controls">
+            <button onclick="previousSlide()">Précédent</button>
+            <button onclick="nextSlide()">Suivant</button>
         </div>
-        <div>
-            <img src="models-main/7478631601225499846(1).png" alt="Projet 2">
-        </div>
-    </section>
-</main>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-item');
+
+        function showSlide(n) {
+            slides.forEach((slide) => {
+                slide.style.display = 'none';
+            });
+            slides[n].style.display = 'block';
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

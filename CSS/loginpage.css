@@ -1,12 +1,13 @@
 /* loginpage.css */
 
 /* Global Styles */
+/* Applique des styles globaux au corps de la page, avec une mise en page centrée et un arrière-plan en dégradé */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #535353, #e6e6e6);
-  color: #fff;
+  background: linear-gradient(to right, #4e4e4e, #e6e6e6);
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +15,7 @@ body {
 }
 
 /* Header Styles */
+/* Styles pour l'en-tête, avec une barre de navigation fixe en haut de la page */
 .header {
   width: 100%;
   background: rgba(0, 0, 0, 0.6);
@@ -23,21 +25,25 @@ body {
   z-index: 1000;
 }
 
+/* Conteneur pour l'en-tête, assurant l'espacement entre les éléments */
 .header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Logo de l'en-tête */
 .header-logo img {
-  width: 130px;
+  width: 100px;
   height: 100px;
 }
 
+/* Menu de navigation */
 .navbar-menu {
   display: flex;
 }
 
+/* Liste de navigation */
 .navbar-menu .nav {
   display: flex;
   list-style: none;
@@ -45,21 +51,25 @@ body {
   padding: 0;
 }
 
+/* Éléments de la liste de navigation */
 .navbar-menu .nav-item {
   margin: 0 15px;
 }
 
+/* Liens de navigation */
 .navbar-menu .nav-link {
   text-decoration: none;
   color: #fff;
   transition: color 0.3s;
 }
 
+/* Effet au survol des liens de navigation */
 .navbar-menu .nav-link:hover {
   color: #f0f0f0;
 }
 
 /* Responsive Styles for Header */
+/* Styles réactifs pour l'en-tête sur les petits écrans */
 @media (max-width: 768px) {
   .navbar-menu .nav {
       flex-direction: column;
@@ -79,8 +89,9 @@ body {
 }
 
 /* Login Container */
+/* Conteneur pour le formulaire de connexion, avec des styles pour l'arrière-plan et l'ombre */
 .login-container {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(146, 146, 146, 0.1);
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -90,13 +101,15 @@ body {
   margin-top: 80px;
 }
 
+/* Titre du formulaire de connexion */
 .login-container h1 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #fff;
+  color: #000;
 }
 
 /* Input Fields */
+/* Styles pour les champs de saisie du formulaire */
 .login-container input {
   width: 100%;
   padding: 12px;
@@ -105,37 +118,44 @@ body {
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
+  color: #000;
 }
 
+/* Effets au focus des champs de saisie */
 .login-container input:focus {
   border-color: #9c3434;
   box-shadow: 0 0 8px rgba(106, 130, 251, 0.6);
 }
 
 /* Buttons */
+/* Styles pour les boutons du formulaire */
 .login-container button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   border: none;
   border-radius: 5px;
-  background: #696969;
-  color: #fff;
+  background: #b4b4b4;
+  color: #000;
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
 }
 
+/* Effets au survol des boutons */
 .login-container button:hover {
-  background: #aa1d1dd2;
+  background: #c7c7c7d2;
   transform: scale(1.05);
 }
 
+/* Paragraphe dans le formulaire de connexion */
 .login-container p {
   margin: 20px 0;
+  color: #000;
 }
 
 /* Animation for switching forms */
+/* Styles pour l'animation des formulaires d'inscription et de connexion */
 #main, #create-acct {
   display: none;
   opacity: 0;
@@ -148,6 +168,7 @@ body {
 }
 
 /* Media Queries for Responsive Design */
+/* Styles réactifs pour le conteneur de connexion sur les petits écrans */
 @media (max-width: 768px) {
   .login-container {
       padding: 20px;
@@ -160,4 +181,39 @@ body {
       padding: 10px;
       font-size: 14px;
   }
+}
+
+/* Zones de personnalisation rapide */
+/* Personnaliser les couleurs de l'arrière-plan et des boutons */
+:root {
+  --background-gradient-start: #c4c3c3;
+  --background-gradient-end: #8d8d8d;
+  --button-background: #c2c2c2;
+  --button-hover-background: #808080d2;
+  --input-border-focus: #9c3434;
+  --input-box-shadow-focus: rgba(106, 130, 251, 0.6);
+  --text-color: #000; /* Nouvelle variable pour la couleur du texte */
+}
+
+/* Appliquer les variables personnalisées */
+body {
+  background: linear-gradient(to right, var(--background-gradient-start), var(--background-gradient-end));
+  color: var(--text-color);
+}
+
+.login-container h1, .login-container input, .login-container button, .login-container p {
+  color: var(--text-color);
+}
+
+.login-container button {
+  background: var(--button-background);
+}
+
+.login-container button:hover {
+  background: var(--button-hover-background);
+}
+
+.login-container input:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 8px var(--input-box-shadow-focus);
 }

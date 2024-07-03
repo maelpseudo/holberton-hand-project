@@ -48,7 +48,7 @@ header {
 .get-started-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #5f5f5f;
+    background-color: #acabab;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -57,5 +57,5 @@ header {
 }
 
 .get-started-button:hover {
-    background-color: #d60000;
+    background-color: #b3b3b3;
 }

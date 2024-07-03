@@ -11,11 +11,12 @@
             <nav class="navbar-menu">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="index.html" class="nav-link"><img src="image/maison (2).png" alt="menu"></a>
                     </li> 
                     <li class="nav-item">
-                        <a href="loginpage.html">Hand Status</a>
+                        <a href="loginpage.html"><img src="image/mot-de-passe.png" alt="menu"></a>
                     </li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -24,11 +25,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-functions.js"></script>
     <link rel='stylesheet' href='/CSS/contact.css'>
     <script>
-        // TODO: Replace with your project's customized code snippet
         var firebaseConfig = {
-            apiKey : "AIzaSyC7RN3o4MjeqL32ewvDq1cPIRW7ohKkCW4" , 
-            authDomain : "handberton-96e2c.firebaseapp.com" ,
-            messagerieSenderId : "231357236145" , 
+            apiKey: "AIzaSyC7RN3o4MjeqL32ewvDq1cPIRW7ohKkCW4",
+            authDomain: "handberton-96e2c.firebaseapp.com",
+            databaseURL: "https://handberton-96e2c-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "handberton-96e2c",
+            storageBucket: "handberton-96e2c.appspot.com",
+            messagingSenderId: "231357236145",
+            appId: "1:231357236145:web:a23cc4334d1bc95bfbf390",
+            measurementId: "G-LHJE05Y2RG"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -56,14 +61,16 @@
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
             
-            var addMessage = firebase.functions().httpsCallable('addMessage');
-            addMessage({name: name, email: email, message: message})
+            var sendEmail = firebase.functions().httpsCallable('sendEmail');
+            sendEmail({ name: name, email: email, message: message })
                 .then(function(result) {
                     console.log(result.data);
                     document.getElementById('contactForm').reset();
+                    alert('Message sent successfully!');
                 })
                 .catch(function(error) {
                     console.error('Error:', error);
+                    alert('Failed to send message. Please try again later.');
                 });
         }
     </script>

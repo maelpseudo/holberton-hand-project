@@ -1,0 +1,141 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles globaux pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1800px; /* Largeur maximale du contenu pour éviter l'étirement sur les grands écrans */
+    margin: 0 auto; /* Centrage du conteneur principal horizontalement */
+    padding: 0 20px; /* Espacement intérieur des côtés */
+}
+
+/* Styles pour l'en-tête */
+.header {
+    background-color: #c2c2c2; /* Couleur de fond de l'en-tête */
+    color: #fff; /* Couleur du texte */
+    padding: 20px 0; /* Espacement intérieur en haut et en bas */
+}
+
+.header .container {
+    display: flex; /* Utilisation de flexbox pour aligner les éléments de l'en-tête */
+    justify-content: space-between; /* Espacement égal entre le logo et le menu */
+    align-items: center; /* Alignement vertical au centre */
+}
+
+.header-logo img {
+    width: 100px; /* Largeur du logo */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+}
+
+/* Menu de navigation */
+.navbar-menu ul {
+    list-style: none; /* Suppression des puces de liste pour le menu de navigation */
+    display: flex; /* Affichage des éléments en ligne */
+    gap: 20px; /* Espacement entre les éléments du menu */
+    margin: 0; /* Suppression des marges par défaut */
+    padding: 0; /* Suppression du padding par défaut */
+}
+
+.nav-item {
+    margin: 0 10px; /* Marge horizontale des éléments du menu */
+}
+
+.nav-link {
+    color: #fff; /* Couleur du texte des liens du menu */
+    text-decoration: none; /* Suppression du soulignement par défaut des liens */
+    font-weight: bold; /* Texte en gras */
+    padding: 10px 20px; /* Espacement intérieur des liens */
+    transition: background-color 0.3s; /* Transition fluide pour le changement de couleur de fond */
+}
+
+.nav-link:hover {
+    background-color: #555; /* Couleur de fond au survol des liens */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+/* Styles pour les sections */
+section {
+    padding: 40px 0; /* Espacement intérieur en haut et en bas des sections */
+    text-align: center; /* Centrage du contenu texte des sections */
+}
+
+section h2 {
+    margin-bottom: 20px; /* Marge inférieure du titre de section */
+    color: #333; /* Couleur du titre de section */
+}
+
+section p {
+    margin-bottom: 20px; /* Marge inférieure du paragraphe de section */
+    color: #666; /* Couleur du texte du paragraphe de section */
+}
+
+/* Galerie d'images */
+.gallery {
+    display: flex; /* Affiche les éléments de la galerie en flexbox */
+    justify-content: center; /* Centrage horizontal des éléments de la galerie */
+    align-items: center; /* Centrage vertical des éléments de la galerie */
+    flex-wrap: wrap; /* Permet le retour à la ligne si nécessaire */
+    gap: 20px; /* Espacement entre les éléments de la galerie */
+    margin-bottom: 20px; /* Marge inférieure de la galerie */
+}
+
+.gallery-item {
+    flex: 0 0 calc(33.33% - 20px); /* Largeur fixe pour chaque élément (environ 33.33% avec un espacement de 20px entre eux) */
+    max-width: calc(33.33% - 20px); /* Largeur maximale de chaque élément */
+    transition: transform 0.3s ease-in-out; /* Transition fluide pour les transformations */
+    display: flex; /* Utilisation de flexbox pour centrer verticalement */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+}
+
+.gallery-item video {
+    width: 100%; /* Agrandir la vidéo pour remplir la largeur du conteneur */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+    border-radius: 10px; /* Coins arrondis pour les vidéos */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Légère ombre portée */
+    border: 4px solid #fff; /* Bordure blanche autour des vidéos */
+}
+
+/* Boutons de contrôle */
+.controls {
+    text-align: center; /* Centrage du texte */
+    margin-top: 20px; /* Marge supérieure des boutons */
+}
+
+.controls button {
+    padding: 10px 20px; /* Espacement intérieur des boutons */
+    margin: 0 10px; /* Marge horizontale entre les boutons */
+    background-color: #a1a1a1; /* Couleur de fond des boutons */
+    color: white; /* Couleur du texte des boutons */
+    border: none; /* Suppression des bordures */
+    border-radius: 5px; /* Coins arrondis des boutons */
+    cursor: pointer; /* Curseur de la souris */
+    transition: background-color 0.3s; /* Transition fluide pour le changement de couleur de fond */
+}
+
+.controls button:hover {
+    background-color: #acacac; /* Couleur de fond au survol des boutons */
+}
+
+/* Styles réactifs pour les écrans de petite taille */
+@media (max-width: 768px) {
+    .navbar-menu ul {
+        flex-direction: column; /* Affichage des éléments du menu en colonne sur les petits écrans */
+        gap: 10px; /* Espacement entre les éléments du menu */
+    }
+    
+    .nav-item {
+        margin: 10px 0; /* Marge verticale des éléments du menu */
+    }
+}

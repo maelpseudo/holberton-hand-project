@@ -4,42 +4,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Homepage - Hand Machine </title>
+    <title>Homepage - Handberton </title>
     <meta name="description" content="Description of the page less than 150 characters">
     <link rel="icon" type="image/png" href="Vista Logos/logo-transparent-png.png">
     <link rel='stylesheet' href='CSS/index.css'>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="header" data-section-theme="dark">
+    <header class="header">
         <div class="container">
             <div class="header-logo">
-                <a href="vidéopage.html">
-                    <img src="Vista Logos/logo-transparent-png.png" alt="Vista logo" width="130" height="100">
-                </a>
+                <a href="vidéopage.html"><img src="Vista Logos/logo-transparent-png.png" alt="Hand Machine Logo"></a>
             </div>
             <nav class="navbar-menu">
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Home</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a href="loginpage.html">Hand Status</a>
-                    </li>
-                    
-                        <li class="nav-item">
-                            <a href="#works" class="nav-link">Works</a>
-                    <li class="nav-item">
-                        <a href="#Hand Machine Development" class="nav-link">Hand Machine Development</a>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
+                    <li><a href="loginpage.html" class="nav-link"><img src="image/mot-de-passe.png" alt="menu"></a></li>
+                    <li><a href="contact.html" class="nav-link"><img src="image/lettre (1).png" alt="menu"></a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <!-- Main -->
     <main>
         <!-- Hero section -->
@@ -48,11 +36,12 @@
                 <div class="section-body">
                     <section class="section-inner">
                         <h2 class="section-title">The hand machine is ready!</h2>
-                        <a href="#Works" class="button">Get Started</a>
+                        <a href="#works" class="button">Get Started</a>
                     </section>
                 </div>
             </div>
         </section>
+
         <!-- Works section -->
         <section id="works" class="section" data-section-theme="dark">
             <div class="container">
@@ -66,7 +55,7 @@
                             <article class="card-work">
                                 <div class="card-outer">
                                     <div class="card-image">
-                                        <img src="image/image.png" alt=""  width="400" height="400">
+                                        <img src="image/searchscreen.jpg" alt="" width="400" height="400">
                                     </div>
                                     <div class="card-inner">
                                         <h3 class="card-title"><a href="Interiordesign.html">Interior Design</a></h3>
@@ -78,10 +67,10 @@
                             <article class="card-work">
                                 <div class="card-outer">
                                     <div class="card-image">
-                                        <img src="image/image copy 2.png" alt=""  width="400" height="400">
+                                        <img src="image/wallpapersden.com_programming-coding-language_600x600.jpg" alt="" width="400" height="400">
                                     </div>
                                     <div class="card-inner">
-                                        <h3 class="card-title"><a href="#">Web Development</a></h3>
+                                        <h3 class="card-title"><a href="webdev.html">Web Development</a></h3>
                                     </div>
                                 </div>
                             </article>
@@ -90,8 +79,9 @@
                 </div>
             </div>
         </section>
+
         <!-- Hand Machine Development section -->
-        <section id="Hand Machine Development" class="section">
+        <section id="hand-machine-development" class="section">
             <div class="container">
                 <header class="section-header">
                     <h2 class="section-title">Hand Machine Development</h2>
@@ -101,8 +91,7 @@
                     <ul class="row">
                         <li class="col-1-3">
                             <article class="card-testimonial">
-                                <img src="image/IMG_20230827_201330.jpg" alt="Alfred G. avatar" width="100" height="100"
-                                    class="card-avatar">
+                                <img src="image/IMG_20230827_201330.jpg" alt="Alfred G. avatar" width="100" height="100" class="card-avatar">
                                 <blockquote class="card-quote">
                                     <p>Backend and Database engineer
                                         <cite>Alfred G.</cite>
@@ -112,8 +101,7 @@
                         </li>
                         <li class="col-1-3">
                             <article class="card-testimonial">
-                                <img src="image/mael.png" alt="Maël C. avatar" width="100" height="100"
-                                    class="card-avatar">
+                                <img src="image/mael.png" alt="Maël C. avatar" width="100" height="100" class="card-avatar">
                                 <blockquote class="card-quote">
                                     <p>Robotics engineer
                                         <cite>Maël C.</cite>
@@ -123,8 +111,7 @@
                         </li>
                         <li class="col-1-3">
                             <article class="card-testimonial">
-                                <img src="image/saber.png" alt="Saber S. avatar" width="100" height="100"
-                                    class="card-avatar">
+                                <img src="image/saber.png" alt="Saber S. avatar" width="100" height="100" class="card-avatar">
                                 <blockquote class="card-quote">
                                     <p>Machine Learning engineer
                                         <cite>Saber S.</cite>
@@ -136,6 +123,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Contact section -->
         <section id="contact" class="section">
             <div class="container">
@@ -147,17 +135,18 @@
                     <p>For any further information please contact us here</p>
                 </div>
                 <div class="section-footer">
-                    <a href="contact.html" class="button">Get in touch</a>
+                    <a href="contact.html" class="button centered-button">Get in touch</a>
                 </div>
             </div>
         </section>
     </main>
+
     <!-- Footer -->
     <footer class="footer" data-section-theme="dark">
         <div class="container">
             <div class="row">
                 <div class="col-1-2">
-                    <img src="Vista Logos/logo-transparent-png.png" alt="Hand Machine logo" width="130" height="100">
+                    <img src="Vista Logos/logo-transparent-png.png" alt="Hand Machine logo" width="100" height="100">
                     <address class="footer-address">
                         22 terasse Bellini<br>
                         Puteaux, FR<br>
@@ -168,44 +157,29 @@
                     <ul class="social nav">
                         <li class="social-item nav-item">
                             <a href="https://www.facebook.com/HolbertonSchool/" class="social-link">
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
-                                    <title>
-                                        Facebook icon
-                                    </title>
-                                    <path
-                                        d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z" />
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+                                    <title>Facebook icon</title>
+                                    <path d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z" />
                                 </svg>
                             </a>
                         </li>
                         <li class="social-item nav-item">
-                            <a href="https://twitter.com/holbertonschool" class="social-link">
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
-                                    <title>
-                                        Twitter icon
-                                    </title>
-                                    <path
-                                        d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z" />
+                            <a href="https://twitter.com/holbertonschool?lang=en" class="social-link">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+                                    <title>Twitter icon</title>
+                                    <path d="M24 4.556a9.83 9.83 0 0 1-2.828.775A4.932 4.932 0 0 0 23.337 3.1a9.865 9.865 0 0 1-3.127 1.196 4.924 4.924 0 0 0-8.389 4.482A13.978 13.978 0 0 1 1.671 3.149 4.923 4.923 0 0 0 3.18 9.723a4.902 4.902 0 0 1-2.23-.616v.061a4.923 4.923 0 0 0 3.95 4.827 4.93 4.93 0 0 1-2.224.084 4.925 4.925 0 0 0 4.6 3.42A9.867 9.867 0 0 1 0 21.54a13.94 13.94 0 0 0 7.548 2.213c9.058 0 14.01-7.506 14.01-14.01 0-.213-.004-.426-.014-.637A10.012 10.012 0 0 0 24 4.556z" />
                                 </svg>
                             </a>
                         </li>
                         <li class="social-item nav-item">
-                            <a href="https://www.instagram.com/holbertonschool/" class="social-link">
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
-                                    <title>
-                                        Instagram icon
-                                    </title>
-                                    <path
-                                        d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913a5.885 5.885 0 0 0 1.384 2.126A5.868 5.868 0 0 0 4.14 23.37c.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558a5.898 5.898 0 0 0 2.126-1.384 5.86 5.86 0 0 0 1.384-2.126c.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913a5.89 5.89 0 0 0-1.384-2.126A5.847 5.847 0 0 0 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227a3.81 3.81 0 0 1-.899 1.382 3.744 3.744 0 0 1-1.38.896c-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421a3.716 3.716 0 0 1-1.379-.899 3.644 3.644 0 0 1-.9-1.38c-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 0 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />
+                            <a href="https://www.linkedin.com/school/holberton-school/" class="social-link">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+                                    <title>LinkedIn icon</title>
+                                    <path d="M22.23 0H1.77C.792 0 0 .775 0 1.731v20.538C0 23.225.792 24 1.77 24h20.46c.978 0 1.77-.775 1.77-1.731V1.731C24 .775 23.208 0 22.23 0zM7.09 20.452H3.563V9.033H7.09v11.419zM5.327 7.579a2.053 2.053 0 1 1 0-4.105 2.053 2.053 0 0 1 0 4.105zM20.452 20.452h-3.524v-5.571c0-1.329-.027-3.039-1.85-3.039-1.85 0-2.133 1.445-2.133 2.941v5.669h-3.523V9.033h3.384v1.556h.048c.47-.893 1.618-1.832 3.328-1.832 3.562 0 4.217 2.344 4.217 5.392v6.303z" />
                                 </svg>
                             </a>
                         </li>
                     </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-1-2">
-                    <p class="footer-copyright">© 2024 Hand Machine, by students at Holberton School.</p>
                 </div>
             </div>
         </div>

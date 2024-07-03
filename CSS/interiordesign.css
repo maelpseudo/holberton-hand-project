@@ -1,104 +1,140 @@
 /* Reset CSS */
+/* Réinitialisation des styles par défaut pour une meilleure compatibilité entre navigateurs */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Inclusion des paddings et des bordures dans la taille totale de l'élément */
 }
 
+/* Styles globaux pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
+    font-family: Arial, sans-serif; /* Police de caractères par défaut pour le corps de la page */
+    line-height: 1.6; /* Hauteur de ligne pour un espacement confortable */
+    color: #333; /* Couleur générale du texte */
+    background-color: #f9f9f9; /* Couleur de fond de la page */
 }
 
+/* Conteneur principal */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1200px; /* Largeur maximale du contenu pour éviter l'étirement sur les grands écrans */
+    margin: 0 auto; /* Centrage du conteneur principal horizontalement */
+    padding: 0 20px; /* Espacement intérieur des côtés */
 }
 
+/* Styles pour l'en-tête */
 .header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
+    background-color: #c2c2c2; /* Couleur de fond de l'en-tête */
+    color: #fff; /* Couleur du texte */
+    padding: 20px 0; /* Espacement intérieur en haut et en bas */
+}
+
+.header .container {
+    display: flex; /* Utilisation de flexbox pour aligner les éléments de l'en-tête */
+    justify-content: space-between; /* Espacement égal entre le logo et le menu */
+    align-items: center; /* Alignement vertical au centre */
 }
 
 .header-logo img {
-    width: 130px;
-    height: auto;
-}
-
-.navbar-menu {
-    text-align: center;
+    width: 100px; /* Largeur du logo */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
 }
 
 .navbar-menu ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    list-style: none; /* Suppression des puces de liste pour le menu de navigation */
+    display: flex; /* Affichage des éléments en ligne */
+    gap: 20px; /* Espacement entre les éléments du menu */
+    margin: 0; /* Suppression des marges par défaut */
+    padding: 0; /* Suppression du padding par défaut */
 }
 
 .nav-item {
-    margin: 0 10px;
+    margin: 0 10px; /* Marge horizontale des éléments du menu */
 }
 
 .nav-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
+    color: #fff; /* Couleur du texte des liens du menu */
+    text-decoration: none; /* Suppression du soulignement par défaut des liens */
+    font-weight: bold; /* Texte en gras */
+    padding: 10px 20px; /* Espacement intérieur des liens */
+    transition: background-color 0.3s; /* Transition fluide pour le changement de couleur de fond */
 }
 
 .nav-link:hover {
-    background-color: #575757;
-    border-radius: 5px;
+    background-color: #555; /* Couleur de fond au survol des liens */
+    border-radius: 5px; /* Coins arrondis */
 }
 
+/* Styles pour les sections */
 section {
-    padding: 40px 0;
+    padding: 40px 0; /* Espacement intérieur en haut et en bas des sections */
+    text-align: center; /* Centrage du contenu texte des sections */
 }
 
 section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 20px; /* Marge inférieure du titre de section */
+    color: #333; /* Couleur du titre de section */
 }
 
 section p {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #666;
+    margin-bottom: 20px; /* Marge inférieure du paragraphe de section */
+    color: #666; /* Couleur du texte du paragraphe de section */
 }
 
-section img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* Galerie d'images */
+.gallery {
+    display: flex; /* Affiche les éléments de la galerie en flexbox */
+    justify-content: center; /* Centrage horizontal des éléments de la galerie */
+    align-items: center; /* Centrage vertical des éléments de la galerie */
+    flex-wrap: wrap; /* Permet le retour à la ligne si nécessaire */
+    gap: 20px; /* Espacement entre les éléments de la galerie */
+    margin-bottom: 20px; /* Marge inférieure de la galerie */
 }
 
-section div {
-    margin-bottom: 40px;
+.gallery-item {
+    flex: 0 0 calc(33.33% - 20px); /* Largeur fixe pour chaque élément (environ 33.33% avec un espacement de 20px entre eux) */
+    max-width: calc(33.33% - 20px); /* Largeur maximale de chaque élément */
+    transition: transform 0.3s ease-in-out; /* Transition fluide pour les transformations */
+    display: flex; /* Utilisation de flexbox pour centrer verticalement */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
 }
 
-h3 {
-    text-align: center;
-    color: #444;
-    margin-bottom: 10px;
+.gallery-item img {
+    width: 100%; /* Image occupe toute la largeur de son conteneur */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+    border-radius: 10px; /* Coins arrondis pour les images */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Légère ombre portée */
 }
 
+/* Boutons de contrôle */
+.controls {
+    text-align: center; /* Centrage du texte */
+    margin-top: 20px; /* Marge supérieure des boutons */
+}
+
+.controls button {
+    padding: 10px 20px; /* Espacement intérieur des boutons */
+    margin: 0 10px; /* Marge horizontale entre les boutons */
+    background-color: #a1a1a1; /* Couleur de fond des boutons */
+    color: white; /* Couleur du texte des boutons */
+    border: none; /* Suppression des bordures */
+    border-radius: 5px; /* Coins arrondis des boutons */
+    cursor: pointer; /* Curseur de la souris */
+    transition: background-color 0.3s; /* Transition fluide pour le changement de couleur de fond */
+}
+
+.controls button:hover {
+    background-color: #acacac; /* Couleur de fond au survol des boutons */
+}
+
+/* Styles réactifs pour les écrans de petite taille */
 @media (max-width: 768px) {
     .navbar-menu ul {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; /* Affichage des éléments du menu en colonne sur les petits écrans */
+        gap: 10px; /* Espacement entre les éléments du menu */
     }
     
     .nav-item {
-        margin: 10px 0;
+        margin: 10px 0; /* Marge verticale des éléments du menu */
     }
 }
