@@ -1,3 +1,10 @@
+/* Reset CSS - Supprime les marges et les paddings par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Pour inclure les bordures et le padding dans les dimensions */
+}
+
 /* Variables de personnalisation */
 :root {
     /* Couleurs principales */
@@ -8,13 +15,6 @@
 
     /* Dimensions */
     --container-width: 80%; /* Largeur du conteneur */
-}
-
-/* Reset CSS - Supprime les marges et les paddings par défaut */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Pour inclure les bordures et le padding dans les dimensions */
 }
 
 /* Styles globaux */
@@ -81,7 +81,7 @@ body {
 }
 
 /* Styles de la section principale */
-.main {
+main {
     padding: 20px 0; /* Espacement intérieur vertical */
 }
 
@@ -110,6 +110,7 @@ body {
     display: flex; /* Affichage en flexbox */
     flex-wrap: wrap; /* Permet le retour à la ligne des éléments */
     justify-content: space-around; /* Répartition des éléments avec des espaces autour */
+    align-items: center; /* Alignement vertical */
 }
 
 /* Disposition des colonnes */
@@ -133,6 +134,11 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
     overflow: hidden; /* Cacher le dépassement du contenu */
     transition: transform 0.3s ease; /* Transition pour la transformation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centrage du contenu à l'intérieur de la carte */
+    text-align: center;
 }
 
 .card-work:hover,
@@ -167,27 +173,14 @@ body {
 /* Citation de la carte */
 .card-quote {
     font-style: italic; /* Style italique */
+    margin: 0; /* Réinitialisation de la marge pour le texte */
 }
 
 /* Avatar de la carte */
 .card-avatar {
     border-radius: 50%; /* Bordure arrondie en cercle */
-    margin-right: 10px; /* Espacement à droite */
-}
-
-/* Styles des boutons */
-.button {
-    display: inline-block; /* Affichage en bloc en ligne */
-    background-color: var(--secondary-color); /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement intérieur */
-    text-decoration: none; /* Suppression du soulignement */
-    border-radius: 5px; /* Bordure arrondie */
-    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
-}
-
-.button:hover {
-    background-color: #b1aeae; /* Changement de couleur de fond au survol */
+    margin-right: 0; /* Réinitialisation de la marge pour le centrage */
+    margin-bottom: 10px; /* Espacement en bas */
 }
 
 /* Styles du pied de page */
@@ -255,7 +248,103 @@ body {
 
 /* Centrage du bouton */
 .centered-button {
-    display: block; /* Affichage en bloc */
-    margin: 20px auto; /* Centrage horizontal et espacement vertical */
-    text-align: center; /* Centrage du texte */
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+    height: 100%; /* Hauteur à 100% */
+}
+
+/* Bouton Get in Touch */
+.get-in-touch-button {
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 15px 30px; /* Espacement intérieur */
+    border: none; /* Suppression de la bordure */
+    border-radius: 5px; /* Bordure arrondie */
+    text-transform: uppercase; /* Transformation en majuscules */
+    font-weight: bold; /* Poids de la police */
+    letter-spacing: 1px; /* Espacement des lettres */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+    text-decoration: none; /* Suppression du soulignement */
+}
+
+.get-in-touch-button:hover {
+    background-color: #444; /* Changement de couleur de fond au survol */
+}
+
+/* Styles pour la section Hand Machine Development */
+#hand-machine-development .section-body {
+    display: flex; /* Affichage en flexbox */
+    flex-wrap: wrap; /* Permet le retour à la ligne des éléments */
+    justify-content: space-around; /* Répartition des éléments avec des espaces autour */
+    align-items: center; /* Alignement vertical */
+}
+
+#hand-machine-development .col-1-3 {
+    flex: 0 0 30%; /* Largeur fixe de 30% */
+    max-width: 30%; /* Largeur maximale de 30% */
+    margin-bottom: 20px; /* Espacement en bas */
+}
+
+#hand-machine-development .card-testimonial {
+    background-color: #fff; /* Couleur de fond */
+    border-radius: 10px; /* Bordure arrondie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
+    overflow: hidden; /* Cacher le dépassement du contenu */
+    transition: transform 0.3s ease; /* Transition pour la transformation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centrage du contenu à l'intérieur de la carte */
+    text-align: center;
+}
+
+#hand-machine-development .card-avatar {
+    border-radius: 50%; /* Bordure arrondie en cercle */
+    margin-right: 0; /* Réinitialisation de la marge pour le centrage */
+    margin-bottom: 10px; /* Espacement en bas */
+}
+
+#hand-machine-development .card-quote {
+    font-style: italic; /* Style italique */
+    margin: 0; /* Réinitialisation de la marge pour le texte */
+}
+
+/* Ajustement pour les écrans plus petits si nécessaire */
+@media screen and (max-width: 768px) {
+    #hand-machine-development .col-1-3 {
+        flex: 0 0 100%; /* Largeur fixe de 100% */
+        max-width: 100%; /* Largeur maximale de 100% */
+    }
+}
+/* Styles des boutons */
+.button {
+    display: inline-block; /* Affichage en bloc en ligne */
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement intérieur */
+    text-decoration: none; /* Suppression du soulignement */
+    border-radius: 5px; /* Bordure arrondie */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+}
+/* Centrage du bouton */
+.centered-button {
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+    height: 100%; /* Hauteur à 100% */
+}
+
+/* Bouton Get in Touch */
+.get-in-touch-button {
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 15px 30px; /* Espacement intérieur */
+    border-radius: 5px; /* Bordure arrondie */
+    text-decoration: none; /* Suppression du soulignement */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+}
+
+.get-in-touch-button:hover {
+    background-color: #b1aeae; /* Changement de couleur de fond au survol */
 }

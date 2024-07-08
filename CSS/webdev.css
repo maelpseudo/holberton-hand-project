@@ -88,23 +88,79 @@ section p {
     flex-wrap: wrap; /* Permet le retour à la ligne si nécessaire */
     gap: 20px; /* Espacement entre les éléments de la galerie */
     margin-bottom: 20px; /* Marge inférieure de la galerie */
+    position: relative; /* Position relative pour le fond */
+}
+
+#video-background {
+    background-image: url('path/to/your/background-image.jpg'); /* Chemin vers l'image de fond */
+    background-size: cover; /* Ajuste l'image de fond pour couvrir l'ensemble de la section */
+    background-position: center; /* Centre l'image de fond */
+    padding: 40px 0; /* Espacement intérieur de la section avec fond */
 }
 
 .gallery-item {
-    flex: 0 0 calc(33.33% - 20px); /* Largeur fixe pour chaque élément (environ 33.33% avec un espacement de 20px entre eux) */
-    max-width: calc(33.33% - 20px); /* Largeur maximale de chaque élément */
+    flex: 0 0 calc(50% - 20px); /* Largeur fixe pour chaque élément (environ 50% avec un espacement de 20px entre eux) */
+    max-width: calc(50% - 20px); /* Largeur maximale de chaque élément */
     transition: transform 0.3s ease-in-out; /* Transition fluide pour les transformations */
     display: flex; /* Utilisation de flexbox pour centrer verticalement */
+    flex-direction: column; /* Affiche la vidéo et la description en colonne */
     justify-content: center; /* Centrage horizontal */
     align-items: center; /* Centrage vertical */
+    background: rgba(255, 255, 255, 0.8); /* Fond blanc avec opacité pour les vidéos */
+    padding: 20px; /* Espacement intérieur des éléments de la galerie */
+    border-radius: 10px; /* Coins arrondis pour les éléments de la galerie */
 }
 
 .gallery-item video {
-    width: 100%; /* Agrandir la vidéo pour remplir la largeur du conteneur */
+    width: 100%; /* Vidéo s'ajuste à la largeur du conteneur */
     height: auto; /* Hauteur automatique pour conserver les proportions */
     border-radius: 10px; /* Coins arrondis pour les vidéos */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Légère ombre portée */
     border: 4px solid #fff; /* Bordure blanche autour des vidéos */
+    margin-bottom: 10px; /* Marge inférieure pour espacer de la description */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Transition fluide pour les transformations et l'opacité */
+}
+
+.video-description {
+    text-align: center; /* Centrage du texte */
+    color: #555; /* Couleur du texte de la description */
+    font-size: 1rem; /* Taille de la police de la description */
+    padding: 10px; /* Espacement intérieur pour le confort de lecture */
+}
+
+/* Animation pour les vidéos */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.video-hidden {
+    display: none;
+}
+
+.video-visible {
+    animation: fadeIn 0.5s forwards;
+}
+
+.video-hidden video {
+    animation: fadeOut 0.5s forwards;
 }
 
 /* Boutons de contrôle */

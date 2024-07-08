@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='CSS/webdev.css'>
     <title>Web Development - Handberton</title>
+    <style>
+        /* Ajout de styles CSS pour le bouton Full Screen */
+        .fullscreen-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -32,16 +41,20 @@
     </header>
 
     <main class="container">
-        <section class="gallery">
-            <div class="gallery-item">
-                <video src="vidéo/code html .mp4" width="100%" height="auto" controls> HTML FILES</video>
+        <section class="gallery" id="video-background">
+            <div class="gallery-item video-visible">
+                <video src="vidéo/code html .mp4" width="100%" height="auto"></video>
+                <div class="video-description">This video explains the basics of HTML.</div>
             </div>
             <div class="gallery-item">
-                <video src="vidéo/code css.mp4" width="100%" height="auto" controls> CSS FILES</video>
+                <video src="vidéo/code css.mp4" width="100%" height="auto"></video>
+                <div class="video-description">This video covers the fundamentals of CSS.</div>
             </div>
         </section>
 
         <div class="controls">
+            <button onclick="toggleFullScreen()">Plein écran</button>
+            <button onclick="togglePause()">Pause</button>
             <button onclick="previousSlide()">Précédent</button>
             <button onclick="nextSlide()">Suivant</button>
         </div>
@@ -49,13 +62,18 @@
 
     <script>
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.gallery-item video');
+        const slides = document.querySelectorAll('.gallery-item');
 
         function showSlide(n) {
-            slides.forEach((slide) => {
-                slide.style.display = 'none';
+            slides.forEach((slide, index) => {
+                if (index === n) {
+                    slide.classList.remove('video-hidden');
+                    slide.classList.add('video-visible');
+                } else {
+                    slide.classList.remove('video-visible');
+                    slide.classList.add('video-hidden');
+                }
             });
-            slides[n].style.display = 'block';
         }
 
         function nextSlide() {
@@ -68,7 +86,30 @@
             showSlide(currentSlide);
         }
 
+        // Initialisation de la première vidéo visible
         showSlide(currentSlide);
+
+        // Fonction pour activer/désactiver le mode plein écran
+        function toggleFullScreen() {
+            const video = document.querySelector('.gallery-item.video-visible video');
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE11 */
+                video.msRequestFullscreen();
+            }
+        }
+
+        // Fonction pour mettre en pause ou jouer la vidéo actuellement visible
+        function togglePause() {
+            const video = document.querySelector('.gallery-item.video-visible video');
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
     </script>
 </body>
 </html>

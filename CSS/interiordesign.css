@@ -1,22 +1,21 @@
 /* Reset CSS */
-/* Réinitialisation des styles par défaut pour une meilleure compatibilité entre navigateurs */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Inclusion des paddings et des bordures dans la taille totale de l'élément */
+    box-sizing: border-box;
 }
 
 /* Styles globaux pour le corps de la page */
 body {
-    font-family: Arial, sans-serif; /* Police de caractères par défaut pour le corps de la page */
-    line-height: 1.6; /* Hauteur de ligne pour un espacement confortable */
+    font-family: Arial, sans-serif; /* Police par défaut pour le corps de la page */
+    line-height: 1.6; /* Espacement des lignes */
     color: #333; /* Couleur générale du texte */
     background-color: #f9f9f9; /* Couleur de fond de la page */
 }
 
 /* Conteneur principal */
 .container {
-    max-width: 1200px; /* Largeur maximale du contenu pour éviter l'étirement sur les grands écrans */
+    max-width: 1900px; /* Largeur maximale du contenu pour éviter l'étirement sur les grands écrans */
     margin: 0 auto; /* Centrage du conteneur principal horizontalement */
     padding: 0 20px; /* Espacement intérieur des côtés */
 }
@@ -91,12 +90,15 @@ section p {
 }
 
 .gallery-item {
+    position: relative; /* Position relative pour gérer les légendes */
     flex: 0 0 calc(33.33% - 20px); /* Largeur fixe pour chaque élément (environ 33.33% avec un espacement de 20px entre eux) */
     max-width: calc(33.33% - 20px); /* Largeur maximale de chaque élément */
+    overflow: hidden; /* Masquage du débordement pour les légendes */
     transition: transform 0.3s ease-in-out; /* Transition fluide pour les transformations */
-    display: flex; /* Utilisation de flexbox pour centrer verticalement */
-    justify-content: center; /* Centrage horizontal */
-    align-items: center; /* Centrage vertical */
+}
+
+.gallery-item:hover {
+    transform: scale(1.1); /* Zoom de l'image au survol */
 }
 
 .gallery-item img {
@@ -104,6 +106,24 @@ section p {
     height: auto; /* Hauteur automatique pour conserver les proportions */
     border-radius: 10px; /* Coins arrondis pour les images */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Légère ombre portée */
+    transition: transform 0.3s ease-in-out; /* Transition fluide pour les transformations */
+}
+
+.caption {
+    position: absolute; /* Position absolue pour la légende */
+    bottom: 0; /* Alignement en bas */
+    left: 0; /* Alignement à gauche */
+    width: 100%; /* Pleine largeur */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent noir */
+    color: #fff; /* Texte blanc */
+    padding: 10px; /* Espacement intérieur */
+    text-align: center; /* Centrage du texte */
+    opacity: 0; /* Légende initialement invisible */
+    transition: opacity 0.3s; /* Transition d'opacité fluide */
+}
+
+.gallery-item:hover .caption {
+    opacity: 1; /* Rend la légende visible au survol */
 }
 
 /* Boutons de contrôle */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='CSS/interiordesign.css'>
+    <link rel="stylesheet" href="CSS/interiordesign.css">
     <title>Interior Design - Handberton</title>
 </head>
 <body>
@@ -34,43 +34,58 @@
     <main class="container">
         <section class="gallery">
             <div class="gallery-item">
-                <img src="models-main/258371601225504882(1).jpg" alt="Projet 1">
+                <img src="models-main/258371601225504882(1).jpg" alt="Projet 1" title="Description de projet 1">
+                <div class="caption">Interior Design in detail</div>
             </div>
             <div class="gallery-item">
-                <img src="models-main/6408091601225301216(1).jpg" alt="Projet 2">
+                <img src="models-main/6408091601225301216(1).jpg" alt="Projet 2" title="Description de projet 2">
+                <div class="caption">full hand</div>
             </div>
             <div class="gallery-item">
-                <img src="models-main/7478631601225499846(1).png" alt="Projet 3">
+                <img src="models-main/7478631601225499846(1).png" alt="Projet 3" title="Description de projet 3">
+                <div class="caption">several full hand plans</div>
             </div>
         </section>
 
         <div class="controls">
             <button onclick="previousSlide()">Précédent</button>
             <button onclick="nextSlide()">Suivant</button>
+            <button onclick="toggleFullscreen()">Plein écran</button>
         </div>
     </main>
 
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.gallery-item');
-
+        
         function showSlide(n) {
             slides.forEach((slide) => {
                 slide.style.display = 'none';
             });
             slides[n].style.display = 'block';
         }
-
+        
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }
-
+        
         function previousSlide() {
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             showSlide(currentSlide);
         }
-
+        
+        function toggleFullscreen() {
+            const gallery = document.querySelector('.gallery');
+            if (!document.fullscreenElement) {
+                gallery.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
         showSlide(currentSlide);
     </script>
 </body>
